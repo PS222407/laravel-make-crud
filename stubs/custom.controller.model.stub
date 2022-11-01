@@ -1,0 +1,65 @@
+<?php
+
+namespace {{{ namespace }}};
+
+use App\Http\Controllers\Controller;
+use {{{ namespacedModel }}};
+use {{{ namespacedRequests }}}\Store{{{ name }}}Request;
+use {{{ namespacedRequests }}}\Update{{{ name }}}Request;
+use Jensramakers\LaravelFlashmessage\app\Traits\FlashMesasge;
+
+class {{{ name }}}Controller extends Controller
+{
+    use FlashMesasge;
+
+    public function index()
+    {
+        ${{{ varNamePlural }}} = {{{ name }}}::all();
+
+        return view('admin.{{{ snakeCasePlural }}}', [
+            '{{{ varNamePlural }}}' => ${{{ varNamePlural }}},
+        ]);
+    }
+    public function create()
+    {
+        return view('admin.{{{ snakeCasePlural }}}_create');
+    }
+
+    public function store(Store{{{ name }}}Request $request)
+    {
+        $persist = {{{ name }}}::create($request->validated());
+
+        $this->flashMessage($persist, 'create');
+
+        return redirect()->route('admin.{{{ kebabCasePlural }}}.store');
+    }
+
+    public function show({{{ name }}} ${{{ varName }}})
+    {
+    }
+
+    public function edit({{{ name }}} ${{{ varName }}})
+    {
+        return view('admin.{{{ snakeCasePlural }}}_edit', [
+            '{{{ varName }}}' => ${{{ varName }}},
+        ]);
+    }
+
+    public function update(Update{{{ name }}}Request $request, {{{ name }}} ${{{ varName }}})
+    {
+        $persist = ${{{ varName }}}->update($request->validated());
+
+        $this->flashMessage($persist, 'update');
+
+        return redirect()->route('admin.{{{ kebabCasePlural }}}.index');
+    }
+
+    public function destroy({{{ name }}} ${{{ varName }}})
+    {
+        $persist = ${{{ varName }}}->delete();
+
+        $this->flashMessage($persist, 'destroy');
+
+        return redirect()->route('admin.{{{ kebabCasePlural }}}.index');
+    }
+}

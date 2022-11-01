@@ -1,0 +1,22 @@
+{
+    "name": "jensramakers/laravel-make-crud",
+    "description": "laravel make crud command",
+    "autoload": {
+        "psr-4": {
+            "Jensramakers\\LaravelMakeCrud\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jensramakers\\LaravelMakeCrud\\LaravelMakeCrudServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "jensramakers"
+        }
+    ],
+    "require": {}
+}

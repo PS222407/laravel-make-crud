@@ -1,0 +1,17 @@
+@extends('admin.layouts.app')
+
+@section('content')
+    <x-form.error/>
+
+    <form action="{{ route('admin.{{{ kebabCasePlural }}}.update', ['{{{ varName }}}' => ${{{ varName }}}]) }}" class="p-8" method="POST">
+        @method('PUT')
+        @csrf
+
+        @include('includes.input', ['type' => 'text', 'name' => 'name', 'label' => trans('admin.{{{ snakeCase }}}'), 'default' => ${{{ varName }}}->name])
+
+        <div class="flex gap-x-2">
+            <a href="{{ route('admin.{{{ kebabCasePlural }}}.index') }}" class="btn-secondary w-fit">{{ __('admin.cancel') }}</a>
+            <button type="submit" class="btn-primary w-fit">{{ __('admin.submit') }}</button>
+        </div>
+    </form>
+@endsection

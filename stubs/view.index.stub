@@ -1,0 +1,43 @@
+@inject('RouteAsync', 'App\Classes\RouteAsyncClassForBlade')
+
+@extends('admin.layouts.app')
+
+@section('content')
+    <h1 class="admin-title ucfirst">{{{ pluralName }}}</h1>
+
+    <div class="mb-5 mr-10">
+        <x-flash-message/>
+    </div>
+
+    <a class="btn-primary w-fit" href="{{ route('admin.{{{ kebabCasePlural }}}.create') }}">{{ __('admin.{{{ snakeCasePlural }}}_create') }}</a>
+
+    <br>
+
+    <div class="mr-12">
+        <table class="admin-summary-table datatable">
+            <thead>
+            <tr>
+                <th>{{ __('admin.name') }}</th>
+                <th>{{ __('admin.actions') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach(${{{ varNamePlural }}} as ${{{ varName }}})
+                <tr>
+                    <td>{{ ${{{ varName }}}->name }}</td>
+                    <td class="flex flex-nowrap gap-x-1 justify-center">
+                        <a href="{{ route('admin.{{{ kebabCasePlural }}}.edit', ['{{{ varName }}}' => ${{{ varName }}}]) }}" class="bg-yellow-300 hover:bg-yellow-400 rounded text-white px-4 inline-block">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#deletionModalCenter" onclick="asyncDeletionModal('{{ $RouteAsync->build(route('admin.{{{ kebabCasePlural }}}.destroy', ['{{{ varName }}}' => ${{{ varName }}}])) }}')"
+                                class="bg-red-400 hover:bg-red-500 rounded text-white px-4">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    @include('includes.delete_modal')
+@endsection
