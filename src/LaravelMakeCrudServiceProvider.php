@@ -13,8 +13,6 @@ class LaravelMakeCrudServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadRoutesFrom(base_path().'/routes/crud.php');
-
         if ($this->app->runningInConsole()) {
             $this->commands([
                 MakeCrud::class,

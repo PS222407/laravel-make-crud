@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
  * WARNING DO NOT EDIT MANUALLY THIS WILL BE GENERATED AND CHANGED DYNAMICALLY AUTOMATICALLY
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
-Route::prefix('/admin')->name('admin.')->middleware(['auth', 'verified', 'role:admin'])->group(function () {
+Route::prefix('/admin')->name('admin.')->group(function () {
 });");
         }
 
