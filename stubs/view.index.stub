@@ -1,4 +1,4 @@
-@inject('RouteAsync', 'App\Classes\RouteAsyncClassForBlade')
+@inject('RouteAsync', 'Jensramakers\LaravelAsyncRoute\app\Classes\RouteAsyncClassForBlade')
 
 @extends('admin.layouts.app')
 
