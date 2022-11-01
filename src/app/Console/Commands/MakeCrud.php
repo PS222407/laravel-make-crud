@@ -8,8 +8,6 @@ use Illuminate\Support\Pluralizer;
 
 class MakeCrud extends Command
 {
-    const VIEW_INDEX_STUB_PATH = '/stubs/view.index.stub';
-
     /**
      * The name and signature of the console command.
      *
