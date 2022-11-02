@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <x-form.error/>
+    <x-form-error/>
 
     <form action="{{ route('admin.{{{ kebabCasePlural }}}.store') }}" class="p-8" method="POST">
         @csrf
