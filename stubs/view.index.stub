@@ -1,4 +1,4 @@
-@inject('RouteAsync', 'Jensramakers\LaravelAsyncRoute\app\Classes\RouteAsyncClassForBlade')
+@inject('RouteAsync', 'Jensramakers\laravelAsyncRoute\app\Classes\RouteAsyncClassForBlade')
 
 @extends('admin.layouts.app')
 
@@ -39,5 +39,5 @@
             </tbody>
         </table>
     </div>
-    @include('includes.delete_modal')
+    @include('vendor.jensramakers.delete_modal')
 @endsection
