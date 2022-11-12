@@ -72,8 +72,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         $this->makeController($kebabCasePlural, $controllerNameSpace, $modelNameSpace, $requestNameSpace, $name, $varName, $varNamePlural, $controllerDir, $snakeCasePlural, $pluralName);
         $this->makeViewIndex($kebabCasePlural, $pluralName, $varName, $varNamePlural, $snakeCasePlural);
-        $this->makeViewCreate($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase);
-        $this->makeViewEdit($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase);
+        $this->makeViewCreate($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase, $name);
+        $this->makeViewEdit($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase, $name);
 
         return 0;
     }
@@ -97,13 +97,15 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         }
     }
 
-    public function makeViewCreate($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase)
+    public function makeViewCreate($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase, $name)
     {
         $contents = file_get_contents(base_path().'/stubs/view.create.stub');
         $contents = str_replace('{{{ varName }}}', $varName, $contents);
         $contents = str_replace('{{{ varNamePlural }}}', $varNamePlural, $contents);
         $contents = str_replace('{{{ snakeCase }}}', $snakeCase, $contents);
         $contents = str_replace('{{{ kebabCasePlural }}}', $kebabCasePlural, $contents);
+        $contents = str_replace('{{{ name }}}', $name, $contents);
+
         if (!file_exists(base_path().'/resources/views/admin')) {
             mkdir(base_path().'/resources/views/admin', 0777, true);
         }
@@ -115,13 +117,15 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         }
     }
 
-    public function makeViewEdit($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase)
+    public function makeViewEdit($kebabCasePlural, $varName, $varNamePlural, $snakeCasePlural, $snakeCase, $name)
     {
         $contents = file_get_contents(base_path().'/stubs/view.edit.stub');
         $contents = str_replace('{{{ varName }}}', $varName, $contents);
         $contents = str_replace('{{{ varNamePlural }}}', $varNamePlural, $contents);
         $contents = str_replace('{{{ snakeCase }}}', $snakeCase, $contents);
         $contents = str_replace('{{{ kebabCasePlural }}}', $kebabCasePlural, $contents);
+        $contents = str_replace('{{{ name }}}', $name, $contents);
+
         if (!file_exists('resources/views/admin')) {
             mkdir('resources/views/admin', 0777, true);
         }
